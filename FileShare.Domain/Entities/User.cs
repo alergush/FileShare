@@ -7,6 +7,7 @@ public class User
     public required string Email { get; set; }
     public required string PasswordHash { get; set; }
     public DateTime CreatedAt { get; set; }
+    public DateTime? DeletedAt { get; set; }
 
     public ICollection<UserSubscription> UserSubscriptions { get; set; } =
         new List<UserSubscription>();
