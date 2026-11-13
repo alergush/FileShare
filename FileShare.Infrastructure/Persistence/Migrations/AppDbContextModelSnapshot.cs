@@ -142,13 +142,13 @@ namespace FileShare.Infrastructure.Persistence.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("DefaultExpirationMinutes")
-                        .HasColumnType("integer")
-                        .HasColumnName("default_expiration_minutes");
-
                     b.Property<int>("MaxDownloads")
                         .HasColumnType("integer")
                         .HasColumnName("max_downloads");
+
+                    b.Property<int>("MaxExpirationMinutes")
+                        .HasColumnType("integer")
+                        .HasColumnName("max_expiration_minutes");
 
                     b.Property<int>("MaxFileSizeMb")
                         .HasColumnType("integer")
@@ -185,9 +185,9 @@ namespace FileShare.Infrastructure.Persistence.Migrations
 
                     b.ToTable("subscription_tiers", null, t =>
                         {
-                            t.HasCheckConstraint("ck_subscription_tiers_default_expiration_minutes", "default_expiration_minutes > 0");
-
                             t.HasCheckConstraint("ck_subscription_tiers_max_downloads", "max_downloads > 0");
+
+                            t.HasCheckConstraint("ck_subscription_tiers_max_expiration_minutes", "max_expiration_minutes > 0");
 
                             t.HasCheckConstraint("ck_subscription_tiers_max_file_size_mb", "max_file_size_mb > 0");
 

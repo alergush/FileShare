@@ -36,8 +36,8 @@ public class SubscriptionTierConfiguration : IEntityTypeConfiguration<Subscripti
                 "max_downloads > 0");
 
             t.HasCheckConstraint(
-                "ck_subscription_tiers_default_expiration_minutes",
-                "default_expiration_minutes > 0");
+                "ck_subscription_tiers_max_expiration_minutes",
+                "max_expiration_minutes > 0");
 
             t.HasCheckConstraint(
                 "ck_subscription_tiers_max_transfers_per_window",
