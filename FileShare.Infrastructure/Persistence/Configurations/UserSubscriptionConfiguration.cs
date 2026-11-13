@@ -14,7 +14,7 @@ public class UserSubscriptionConfiguration : IEntityTypeConfiguration<UserSubscr
         builder.HasOne(s => s.User)
             .WithMany(u => u.UserSubscriptions)
             .HasForeignKey(s => s.UserId)
-            .OnDelete(DeleteBehavior.Cascade);
+            .OnDelete(DeleteBehavior.Restrict);
 
         builder.HasOne(s => s.SubscriptionTier)
             .WithMany()
@@ -31,5 +31,7 @@ public class UserSubscriptionConfiguration : IEntityTypeConfiguration<UserSubscr
                 "ck_user_subscriptions_end_after_start",
                 "end_date IS NULL OR end_date > start_date");
         });
+
+        builder.HasQueryFilter(s => s.User.DeletedAt == null);
     }
 }
