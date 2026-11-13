@@ -20,7 +20,7 @@ public class SubscriptionTierConfiguration : IEntityTypeConfiguration<Subscripti
         builder.ToTable(t =>
         {
             t.HasCheckConstraint(
-                "ck_subscription_tiers_name",
+                "ck_subscription_tiers_name_not_empty",
                 "length(btrim(name)) > 0");
 
             t.HasCheckConstraint(
