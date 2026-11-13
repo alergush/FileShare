@@ -32,5 +32,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
                 "ck_users_email_case",
                 "email = lower(email)");
         });
+
+        builder.HasQueryFilter(u => u.DeletedAt == null);
     }
 }
