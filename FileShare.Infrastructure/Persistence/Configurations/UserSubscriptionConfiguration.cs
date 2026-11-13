@@ -26,7 +26,8 @@ public class UserSubscriptionConfiguration : IEntityTypeConfiguration<UserSubscr
 
         builder.HasIndex(s => s.UserId, "ix_user_subscriptions_one_active_per_user")
             .IsUnique()
-            .HasFilter("status = 'Active'");
+            .HasFilter("status = 'Active'")
+            .HasDatabaseName("ix_user_subscriptions_one_active_per_user");
 
         builder.ToTable(t =>
         {
