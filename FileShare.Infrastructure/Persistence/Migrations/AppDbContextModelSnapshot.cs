@@ -207,6 +207,60 @@ namespace FileShare.Infrastructure.Persistence.Migrations
 
                             t.HasCheckConstraint("ck_subscription_tiers_rate_limit_window_minutes", "rate_limit_window_minutes > 0");
                         });
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            MaxDownloads = 5,
+                            MaxExpirationMinutes = 1440,
+                            MaxFileSizeMb = 100,
+                            MaxFilesPerUpload = 5,
+                            MaxTransferSizeMb = 250,
+                            MaxTransfersPerWindow = 3,
+                            Name = "Guest",
+                            PriceCents = 0L,
+                            RateLimitWindowMinutes = 60
+                        },
+                        new
+                        {
+                            Id = 2,
+                            MaxDownloads = 20,
+                            MaxExpirationMinutes = 4320,
+                            MaxFileSizeMb = 250,
+                            MaxFilesPerUpload = 10,
+                            MaxTransferSizeMb = 1024,
+                            MaxTransfersPerWindow = 10,
+                            Name = "Free",
+                            PriceCents = 0L,
+                            RateLimitWindowMinutes = 60
+                        },
+                        new
+                        {
+                            Id = 3,
+                            MaxDownloads = 200,
+                            MaxExpirationMinutes = 10080,
+                            MaxFileSizeMb = 1024,
+                            MaxFilesPerUpload = 50,
+                            MaxTransferSizeMb = 10240,
+                            MaxTransfersPerWindow = 50,
+                            Name = "Pro",
+                            PriceCents = 499L,
+                            RateLimitWindowMinutes = 60
+                        },
+                        new
+                        {
+                            Id = 4,
+                            MaxDownloads = 1000,
+                            MaxExpirationMinutes = 43200,
+                            MaxFileSizeMb = 2048,
+                            MaxFilesPerUpload = 100,
+                            MaxTransferSizeMb = 20480,
+                            MaxTransfersPerWindow = 200,
+                            Name = "Business",
+                            PriceCents = 1499L,
+                            RateLimitWindowMinutes = 60
+                        });
                 });
 
             modelBuilder.Entity("FileShare.Domain.Entities.Transfer", b =>

@@ -55,5 +55,59 @@ public class SubscriptionTierConfiguration : IEntityTypeConfiguration<Subscripti
                 "ck_subscription_tiers_price_cents",
                 "price_cents >= 0");
         });
+
+        builder.HasData(
+            new SubscriptionTier
+            {
+                Id = 1,
+                Name = "Guest",
+                MaxFilesPerUpload = 5,
+                MaxFileSizeMb = 100,
+                MaxTransferSizeMb = 250,
+                MaxDownloads = 5,
+                MaxExpirationMinutes = 1440,
+                MaxTransfersPerWindow = 3,
+                RateLimitWindowMinutes = 60,
+                PriceCents = 0
+            },
+            new SubscriptionTier
+            {
+                Id = 2,
+                Name = "Free",
+                MaxFilesPerUpload = 10,
+                MaxFileSizeMb = 250,
+                MaxTransferSizeMb = 1024,
+                MaxDownloads = 20,
+                MaxExpirationMinutes = 4320,
+                MaxTransfersPerWindow = 10,
+                RateLimitWindowMinutes = 60,
+                PriceCents = 0
+            },
+            new SubscriptionTier
+            {
+                Id = 3,
+                Name = "Pro",
+                MaxFilesPerUpload = 50,
+                MaxFileSizeMb = 1024,
+                MaxTransferSizeMb = 10240,
+                MaxDownloads = 200,
+                MaxExpirationMinutes = 10080,
+                MaxTransfersPerWindow = 50,
+                RateLimitWindowMinutes = 60,
+                PriceCents = 499
+            },
+            new SubscriptionTier
+            {
+                Id = 4,
+                Name = "Business",
+                MaxFilesPerUpload = 100,
+                MaxFileSizeMb = 2048,
+                MaxTransferSizeMb = 20480,
+                MaxDownloads = 1000,
+                MaxExpirationMinutes = 43200,
+                MaxTransfersPerWindow = 200,
+                RateLimitWindowMinutes = 60,
+                PriceCents = 1499
+            });
     }
 }
