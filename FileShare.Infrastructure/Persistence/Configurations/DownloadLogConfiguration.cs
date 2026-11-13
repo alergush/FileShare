@@ -28,6 +28,9 @@ public class DownloadLogConfiguration : IEntityTypeConfiguration<DownloadLog>
 
         builder.Property(dl => dl.UserAgent).HasMaxLength(UserAgentMaxLength);
 
+        builder.Property(dl => dl.DownloadedAt)
+            .HasDefaultValueSql("now()");
+
         builder.ToTable(t =>
         {
             t.HasCheckConstraint(

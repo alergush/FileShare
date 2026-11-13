@@ -18,6 +18,9 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
 
         builder.Property(u => u.PasswordHash).HasMaxLength(256);
 
+        builder.Property(u => u.CreatedAt)
+            .HasDefaultValueSql("now()");
+
         builder.ToTable(t =>
         {
             t.HasCheckConstraint(

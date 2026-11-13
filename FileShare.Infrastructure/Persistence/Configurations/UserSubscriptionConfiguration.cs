@@ -21,6 +21,9 @@ public class UserSubscriptionConfiguration : IEntityTypeConfiguration<UserSubscr
             .HasForeignKey(s => s.SubscriptionTierId)
             .OnDelete(DeleteBehavior.Restrict);
 
+        builder.Property(s => s.CreatedAt)
+            .HasDefaultValueSql("now()");
+
         builder.HasIndex(s => s.UserId, "ix_user_subscriptions_one_active_per_user")
             .IsUnique()
             .HasFilter("status = 'Active'");

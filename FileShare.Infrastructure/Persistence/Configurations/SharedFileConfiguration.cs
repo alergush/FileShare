@@ -23,6 +23,9 @@ public class SharedFileConfiguration : IEntityTypeConfiguration<SharedFile>
 
         builder.Property(sf => sf.ContentType).HasMaxLength(256);
 
+        builder.Property(sf => sf.CreatedAt)
+            .HasDefaultValueSql("now()");
+
         builder.ToTable(t =>
         {
             t.HasCheckConstraint(

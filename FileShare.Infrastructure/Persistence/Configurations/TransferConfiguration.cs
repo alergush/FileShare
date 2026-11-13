@@ -24,6 +24,9 @@ public class TransferConfiguration : IEntityTypeConfiguration<Transfer>
         builder.Property(t => t.Code).HasMaxLength(CodeLength);
         builder.HasIndex(t => t.Code).IsUnique();
 
+        builder.Property(t => t.CreatedAt)
+            .HasDefaultValueSql("now()");
+
         builder.ToTable(t =>
         {
             t.HasCheckConstraint(
