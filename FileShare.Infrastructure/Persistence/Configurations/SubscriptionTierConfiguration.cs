@@ -32,6 +32,10 @@ public class SubscriptionTierConfiguration : IEntityTypeConfiguration<Subscripti
                 "max_file_size_mb > 0");
 
             t.HasCheckConstraint(
+                "ck_subscription_tiers_max_transfer_size_mb",
+                "max_transfer_size_mb >= max_file_size_mb");
+
+            t.HasCheckConstraint(
                 "ck_subscription_tiers_max_downloads",
                 "max_downloads > 0");
 

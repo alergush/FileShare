@@ -158,6 +158,10 @@ namespace FileShare.Infrastructure.Persistence.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("max_files_per_upload");
 
+                    b.Property<int>("MaxTransferSizeMb")
+                        .HasColumnType("integer")
+                        .HasColumnName("max_transfer_size_mb");
+
                     b.Property<int>("MaxTransfersPerWindow")
                         .HasColumnType("integer")
                         .HasColumnName("max_transfers_per_window");
@@ -192,6 +196,8 @@ namespace FileShare.Infrastructure.Persistence.Migrations
                             t.HasCheckConstraint("ck_subscription_tiers_max_file_size_mb", "max_file_size_mb > 0");
 
                             t.HasCheckConstraint("ck_subscription_tiers_max_files_per_upload", "max_files_per_upload > 0");
+
+                            t.HasCheckConstraint("ck_subscription_tiers_max_transfer_size_mb", "max_transfer_size_mb >= max_file_size_mb");
 
                             t.HasCheckConstraint("ck_subscription_tiers_max_transfers_per_window", "max_transfers_per_window > 0");
 
