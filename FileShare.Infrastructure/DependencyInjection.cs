@@ -30,8 +30,10 @@ public static class DependencyInjection
                 .UseSnakeCaseNamingConvention());
 
         services.AddSingleton<IPasswordHasher, PasswordHasher>();
+
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
 
         return services;
     }
