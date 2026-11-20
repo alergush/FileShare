@@ -1,4 +1,5 @@
 using FileShare.Application.Abstractions;
+using FileShare.Application.Abstractions.Persistence;
 using FileShare.Infrastructure.Persistence;
 using FileShare.Infrastructure.Security;
 
@@ -28,6 +29,7 @@ public static class DependencyInjection
                 .UseSnakeCaseNamingConvention());
 
         services.AddSingleton<IPasswordHasher, PasswordHasher>();
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         return services;
     }
