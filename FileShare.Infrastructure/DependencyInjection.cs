@@ -1,6 +1,7 @@
 using FileShare.Application.Abstractions;
 using FileShare.Application.Abstractions.Persistence;
 using FileShare.Infrastructure.Persistence;
+using FileShare.Infrastructure.Persistence.Repositories;
 using FileShare.Infrastructure.Security;
 
 using Microsoft.EntityFrameworkCore;
@@ -30,6 +31,7 @@ public static class DependencyInjection
 
         services.AddSingleton<IPasswordHasher, PasswordHasher>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddScoped<IUserRepository, UserRepository>();
 
         return services;
     }
