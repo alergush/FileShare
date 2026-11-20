@@ -10,7 +10,7 @@ public sealed class SubscriptionRepository(AppDbContext context) : ISubscription
     public Task<SubscriptionTier?> GetTierByNameAsync(string name, CancellationToken cancellationToken = default) =>
         context.SubscriptionTiers.FirstOrDefaultAsync(t => t.Name == name, cancellationToken);
 
-    public Task Add(UserSubscription subscription)
+    public Task AddAsync(UserSubscription subscription, CancellationToken cancellationToken = default)
     {
         context.UserSubscriptions.Add(subscription);
         return Task.CompletedTask;
