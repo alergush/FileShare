@@ -1,3 +1,4 @@
+using FileShare.Domain.Constants;
 using FileShare.Domain.Entities;
 
 using Microsoft.EntityFrameworkCore;
@@ -60,7 +61,7 @@ public class SubscriptionTierConfiguration : IEntityTypeConfiguration<Subscripti
             new SubscriptionTier
             {
                 Id = 1,
-                Name = "Guest",
+                Name = SubscriptionTierNames.Guest,
                 MaxFilesPerUpload = 5,
                 MaxFileSizeMb = 100,
                 MaxTransferSizeMb = 250,
@@ -73,7 +74,7 @@ public class SubscriptionTierConfiguration : IEntityTypeConfiguration<Subscripti
             new SubscriptionTier
             {
                 Id = 2,
-                Name = "Free",
+                Name = SubscriptionTierNames.Free,
                 MaxFilesPerUpload = 10,
                 MaxFileSizeMb = 250,
                 MaxTransferSizeMb = 1024,
@@ -86,7 +87,7 @@ public class SubscriptionTierConfiguration : IEntityTypeConfiguration<Subscripti
             new SubscriptionTier
             {
                 Id = 3,
-                Name = "Pro",
+                Name = SubscriptionTierNames.Pro,
                 MaxFilesPerUpload = 50,
                 MaxFileSizeMb = 1024,
                 MaxTransferSizeMb = 10240,
@@ -99,7 +100,7 @@ public class SubscriptionTierConfiguration : IEntityTypeConfiguration<Subscripti
             new SubscriptionTier
             {
                 Id = 4,
-                Name = "Business",
+                Name = SubscriptionTierNames.Business,
                 MaxFilesPerUpload = 100,
                 MaxFileSizeMb = 2048,
                 MaxTransferSizeMb = 20480,
