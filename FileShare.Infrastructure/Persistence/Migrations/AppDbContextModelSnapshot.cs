@@ -378,6 +378,12 @@ namespace FileShare.Infrastructure.Persistence.Migrations
                         .HasColumnType("character varying(256)")
                         .HasColumnName("password_hash");
 
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)")
+                        .HasColumnName("role");
+
                     b.HasKey("Id")
                         .HasName("pk_users");
 
@@ -392,6 +398,8 @@ namespace FileShare.Infrastructure.Persistence.Migrations
                             t.HasCheckConstraint("ck_users_email_not_empty", "length(btrim(email)) > 0");
 
                             t.HasCheckConstraint("ck_users_full_name_not_empty", "length(btrim(full_name)) > 0");
+
+                            t.HasCheckConstraint("ck_users_role", "role IN ('User', 'Admin')");
                         });
                 });
 

@@ -1,4 +1,5 @@
 using FileShare.Domain.Entities;
+using FileShare.Domain.Enums;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -21,6 +22,8 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.Property(u => u.CreatedAt)
             .HasDefaultValueSql("now()");
 
+        var roles = string.Join(", ", Enum.GetNames<UserRole>().Select(r => $"'{r}'"));
+
         builder.ToTable(t =>
         {
             t.HasCheckConstraint(
@@ -34,6 +37,10 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             t.HasCheckConstraint(
                 "ck_users_email_case",
                 "email = lower(email)");
+
+            t.HasCheckConstraint(
+                "ck_users_role",
+                $"role IN ({roles})");
         });
 
         builder.HasQueryFilter(u => u.DeletedAt == null);

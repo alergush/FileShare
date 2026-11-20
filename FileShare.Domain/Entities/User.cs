@@ -1,3 +1,5 @@
+using FileShare.Domain.Enums;
+
 namespace FileShare.Domain.Entities;
 
 public class User
@@ -6,6 +8,7 @@ public class User
     public string? FullName { get; set; }
     public required string Email { get; set; }
     public required string PasswordHash { get; set; }
+    public required UserRole Role { get; set; }
     public DateTime CreatedAt { get; set; }
     public DateTime? DeletedAt { get; set; }
 
