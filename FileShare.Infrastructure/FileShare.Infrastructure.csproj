@@ -1,12 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  
+
   <ItemGroup>
-    <ProjectReference Include="..\FileShare.Application\FileShare.Application.csproj" />
+    <ProjectReference Include="..\FileShare.Application\FileShare.Application.csproj"/>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="EFCore.NamingConventions" />
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
+    <PackageReference Include="EFCore.NamingConventions"/>
+    <PackageReference Include="Microsoft.Extensions.Identity.Core"/>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL"/>
   </ItemGroup>
 
 </Project>

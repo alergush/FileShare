@@ -1,5 +1,8 @@
+using FileShare.Application.Abstractions;
 using FileShare.Infrastructure.Persistence;
+using FileShare.Infrastructure.Security;
 
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,6 +27,8 @@ public static class DependencyInjection
             options
                 .UseNpgsql(connectionString)
                 .UseSnakeCaseNamingConvention());
+
+        services.AddSingleton<IPasswordHasher, PasswordHasher>();
 
         return services;
     }
