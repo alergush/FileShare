@@ -12,19 +12,46 @@ public sealed class GlobalExceptionHandler(
         Exception exception,
         CancellationToken cancellationToken)
     {
+        if (exception is BadHttpRequestException badRequestException)
+        {
+            logger.LogWarning("Bad request: {Message}", badRequestException.Message);
+
+            return await WriteProblemAsync(
+                httpContext,
+                exception,
+                badRequestException.StatusCode,
+                "Bad request",
+                "The request could not be read or its parameters are invalid.");
+        }
+
         logger.LogError(exception, "Unhandled exception occurred");
 
-        httpContext.Response.StatusCode = StatusCodes.Status500InternalServerError;
+        return await WriteProblemAsync(
+            httpContext,
+            exception,
+            StatusCodes.Status500InternalServerError,
+            "Server error",
+            "An unexpected error occurred.");
+    }
 
-        return await problemDetailsService.TryWriteAsync(new ProblemDetailsContext
+    private ValueTask<bool> WriteProblemAsync(
+        HttpContext httpContext,
+        Exception exception,
+        int statusCode,
+        string title,
+        string detail)
+    {
+        httpContext.Response.StatusCode = statusCode;
+
+        return problemDetailsService.TryWriteAsync(new ProblemDetailsContext
         {
             HttpContext = httpContext,
             Exception = exception,
             ProblemDetails = new ProblemDetails
             {
-                Status = StatusCodes.Status500InternalServerError,
-                Title = "Server error",
-                Detail = "An unexpected error occurred."
+                Status = statusCode,
+                Title = title,
+                Detail = detail
             }
         });
     }
