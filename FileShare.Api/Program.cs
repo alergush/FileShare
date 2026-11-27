@@ -1,3 +1,4 @@
+using FileShare.Api.Endpoints;
 using FileShare.Api.Infrastructure;
 using FileShare.Application;
 using FileShare.Infrastructure;
@@ -25,5 +26,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.MapAuthEndpoints();
 
 app.Run();

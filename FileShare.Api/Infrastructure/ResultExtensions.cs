@@ -1,10 +1,12 @@
 using FileShare.Domain.Common;
 
+using Microsoft.AspNetCore.Http.HttpResults;
+
 namespace FileShare.Api.Infrastructure;
 
 public static class ResultExtensions
 {
-    public static IResult ToProblem(this Result result)
+    public static ProblemHttpResult ToProblem(this Result result)
     {
         if (result.IsSuccess)
         {
